@@ -1,0 +1,34 @@
+{% load static %}
+<div id="sidebar" class='active'>
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <!-- <img src="{% static 'assets/images/logo.svg' %}" alt="" srcset=""> -->
+            <!-- <a href="#"><p>PharmaSoft</p></a> -->
+            <a href="">
+                <p>TRACKLYSUBSCRIPT</p>
+            </a>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+
+
+                <li class='sidebar-title'>Main Menu</li>
+
+
+                <li class="sidebar-item ">
+                    <a href="{% url 'exchange_rate_list' %}" class='sidebar-link'>
+                        <i data-feather="dollar-sign" width="20"></i>
+                        <span>Exchange Rate</span>
+                    </a>
+
+                    <a href="{% url 'all_user_subscription_list' %}" class='sidebar-link'>
+                        <i data-feather="list" width="20"></i>
+                        <span>Subscription List</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+    </div>
+</div>

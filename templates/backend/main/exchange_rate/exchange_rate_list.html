@@ -1,0 +1,95 @@
+{% extends 'backend/dashboard/main.html' %}
+{% load static %}
+
+{% block header_resource %}
+    
+<style>
+    tbody td:nth-child(2),
+    thead th:nth-child(2) {
+        text-align: center !important;
+    }
+    
+    tbody td:nth-child(1),
+    thead th:nth-child(1) {
+        position: sticky;
+        left: 0;
+        z-index: 1;
+        background-color: #f1f1f1;
+        /* background-color: #fdf7f7; */
+    }
+</style>
+    {% endblock %}
+
+{% block content %}
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="col-lg-12 grid-margin stretch-card"></div>
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-3">
+                <h4 class="card-title m-0">Exchange Price List</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="exchange_table" class="table dataTable table-bordered" style="width:100%">
+                    <caption></caption>
+                    <th></th>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function () {
+        var table = $('#exchange_table').DataTable(
+            {
+                dom: "<'row'<'col-sm-8'l>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+
+                fixedColumns: {
+                    start: 1,
+                    end: 1
+                },
+                scrollCollapse: true,
+                scrollX: true,
+                scrollY: true,
+                ordering: true,
+                serverSide: true,
+                ajax: {
+                    url: '{% url "exchange_rate_list" %}',
+                    type: 'POST',  
+                    data: function (d) {
+                        d.csrfmiddlewaretoken = '{{ csrf_token }}'; 
+                        return d;
+                    }
+                },
+
+
+                "columns": [
+                    { title: "SL", data: "count", "orderable": false, type: "string" },
+                    { title: "Base Currency", data: "base_currency", "orderable": false, type: "string" },
+                    { title: "Target Currency", data: "target_currency", "orderable": false, type: "string" },
+                    { title: "Price", data: "rate", "orderable": true, type: "string" },
+                    { title: "Updated Time", data: "fetched_at", "orderable": false, type: "string" },
+                ],
+                "pageLength": 10 // change the page length option to display 50 rows per page
+            });
+
+    });
+
+
+</script>
+{% endblock extra_js %}
+
+
+
+
+
