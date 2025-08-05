@@ -67,13 +67,41 @@ Make sure Redis is running locally on port 6379:
 redis-server
 ```
 ### 2. Start Celery Worker
+In one terminal:
 ```bash
-celery -A subscription_project_jwt worker -l info
+celery -A main worker --loglevel=info --pool=solo
 ```
 ### 3. Start Celery Beat (for periodic tasks)
+In another terminal:
 ```bash
-celery -A subscription_project_jwt beat -l info
+celery -A main beat --loglevel=info
 ```
+
+##🔧 Configure Periodic Task in Django Admin
+Go to /admin/ in your browser.
+
+Navigate to "Intervals" and create a new interval (e.g., every hour).
+
+Then go to "Periodic Tasks" and:
+
+Set the Name (e.g., Fetch USD to BDT Rate).
+
+Choose the Task (registered): fetch_usd_to_bdt_rate
+
+Set Interval (e.g., the one you created earlier).
+
+Check Enabled.
+
+Click Save.
+## ▶ Run the Django Server
+In a third terminal:
+```bash
+python manage.py runserver
+```
+Now all three processes (Django server, Celery worker, Celery beat) should run together.
+
+---
+
 ## 🔑 JWT Authentication
 TracklySubscript uses Simple JWT for token-based auth.
 
