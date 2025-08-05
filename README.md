@@ -77,24 +77,24 @@ In another terminal:
 celery -A main beat --loglevel=info
 ```
 
-##🔧 Configure Periodic Task in Django Admin
-Go to /admin/ in your browser.
+## 🔧 Configure Periodic Task in Django Admin
 
-Navigate to "Intervals" and create a new interval (e.g., every hour).
+Go to `/admin/` in your browser.
 
-Then go to "Periodic Tasks" and:
+1. Navigate to **"Intervals"** and create a new interval (e.g., every hour).
+2. Then go to **"Periodic Tasks"** and:
+   - Set the **Name** (e.g., `Fetch USD to BDT Rate`)
+   - Choose the **Task (registered)**: `fetch_usd_to_bdt_rate`
+   - Set the **Interval** (the one you created earlier)
+   - Check **Enabled**
+   - Click **Save**
 
-Set the Name (e.g., Fetch USD to BDT Rate).
+---
 
-Choose the Task (registered): fetch_usd_to_bdt_rate
-
-Set Interval (e.g., the one you created earlier).
-
-Check Enabled.
-
-Click Save.
 ## ▶ Run the Django Server
+
 In a third terminal:
+
 ```bash
 python manage.py runserver
 ```
