@@ -97,23 +97,20 @@ TracklySubscript uses Simple JWT for token-based auth.
 | `/`                  | POST   | AJAX-based ExchangeRateLog table      |
 | `/subscription/list` | POST   | AJAX-based all-user subscription list |
 
-🔁 Background Task
-Task: fetch_usd_to_bdt_rate
-A Celery task that fetches USD to BDT conversion rate using a free API and stores it in ExchangeRateLog.
 
-📊 AJAX Tables
-1. Exchange Rate List
-URL: /
-Renders a paginated table of historical exchange rates using AJAX.
+# Subscription Management System (Django + DRF)
 
-2. All User Subscription List
-URL: /subscription/list
-Shows all users' subscription details (username, plan, status, etc.)
+## 🔁 Background Task
+- **Task:** `fetch_usd_to_bdt_rate` — A Celery task that fetches USD to BDT conversion rate using a free API and stores it in `ExchangeRateLog`.
 
-💰 Wallet Logic
-Every new user starts with a balance of 1000 BDT.
-Subscribing deducts money from wallet based on the current USD-BDT rate.
-Cancelling a subscription within 7 days returns full refund, else prorated.
+## 📊 AJAX Tables
+- **Exchange Rate List:** `/` — Renders a paginated table of historical exchange rates using AJAX.  
+- **All User Subscription List:** `/subscription/list` — Shows all users' subscription details (username, plan, status, etc.).
+
+## 💰 Wallet Logic
+- Every new user starts with a balance of **1000 BDT**.  
+- Subscribing deducts money from wallet based on the current **USD → BDT** rate.  
+- Cancelling a subscription within **7 days** returns **full refund**, otherwise refund is **prorated** by day.
 
 👨‍💻 Developer
 Built with ❤️ by Shahoraiar Hossain
