@@ -103,7 +103,19 @@ Now all three processes (Django server, Celery worker, Celery beat) should run t
 ---
 
 ## 🔑 JWT Authentication
-TracklySubscript uses Simple JWT for token-based auth.
+
+**TracklySubscript** uses **Simple JWT** for token-based authentication.
+
+---
+
+### 📫 Postman Collection
+
+A ready-to-use Postman collection is included for testing the API:
+
+- **File:** `TracklySubscript.postman_collection.json`
+
+> 💡 Import this file into Postman to quickly try all available endpoints with sample requests.
+
 
 ## 🔌 API Endpoints
 🔐 Auth APIs
